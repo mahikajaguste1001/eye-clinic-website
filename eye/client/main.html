@@ -1,0 +1,38 @@
+<head>
+  <title>eye</title>
+</head>
+
+<body>
+  <h1>Welcome to coursera!</h1>
+  <div class="container">
+    {{> condition_images_template}}
+    {{> condition_details_template}}
+  </div>
+</body>
+
+<template name="condition_images_template">
+  <div class="row">
+  {{#each condition_images_array}}
+    <div class="col-xs-12 col-md-3">
+      <div class="thumbnail">
+        <img class="js-condition-image" src="{{img_src}}" alt="{{img_alt}}" /> 
+        <div class="caption">
+          <h3>{{img_alt}}</h3>
+        </div>
+     </div>
+    </div> <!-- / col -->
+  {{/each}}
+  </div> <!-- / row -->
+</template>
+
+
+
+
+<template name="condition_details_template">
+  <div class="container">
+    {{#each condition_detail}}
+      <h2>{{name}}</h2>
+      <p>{{details}}</p>
+    {{/each}}
+  </div>
+</template>

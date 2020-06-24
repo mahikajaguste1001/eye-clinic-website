@@ -1,1 +1,23 @@
 /* CSS declarations go here */
+.main-body{
+	padding-top: 10px;
+}
+
+.nav-pad{
+	padding-right:60px;
+}
+
+.sectioning{
+	padding-top:60px;
+}
+
+.coloring{
+	background-color: pink;
+}
+
+.opening{
+	padding-top:60px;
+	width:100%;
+	max-height:500px;
+
+}

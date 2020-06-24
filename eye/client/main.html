@@ -3,31 +3,54 @@
 </head>
 
 <body>
-  <h1>Welcome to coursera!</h1>
-  <div class="container">
-    {{> condition_images_template}}
-    {{> condition_details_template}}
+  <div role="navigation">
+    {{> navbar}}
+  </div>
+  <div class="container main-body">
+    <img src="open.jpg" alt="opening image" class="opening"/>
+    <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+      <div id="aboutusscroll">
+      <div class="sectioning">
+        {{> about_us_template}}
+      </div>
+      </div>>
+      <div id="conditionscroll">
+      <div class="sectioning">
+        {{> condition_images_template}}
+        {{> condition_details_template}}
+      </div>
+      </div>
+      <div id="contactusscroll">
+      <div class="sectioning">
+        {{> contact_us_template}}
+      </div>
+      </div>
+    </div>
   </div>
 </body>
 
+
+<!--template to display images of all conditions -->
 <template name="condition_images_template">
   <div class="row">
-  {{#each condition_images_array}}
-    <div class="col-xs-12 col-md-3">
-      <div class="thumbnail">
-        <img class="js-condition-image" src="{{img_src}}" alt="{{img_alt}}" /> 
-        <div class="caption">
-          <h3>{{img_alt}}</h3>
-        </div>
-     </div>
-    </div> <!-- / col -->
-  {{/each}}
+     
+        {{#each condition_images_array}}
+          <div class="col-xs-12 col-md-3">
+            <div class="thumbnail">
+              <img class="js-condition-image" src="{{img_src}}" alt="{{img_alt}}" /> 
+              <div class="caption">
+                <h3>{{img_alt}}</h3>
+              </div>
+            </div>
+          </div> <!-- / col -->
+        {{/each}}
+      
   </div> <!-- / row -->
 </template>
 
 
 
-
+<!--template to display details of a condition when clicked on it -->
 <template name="condition_details_template">
   <div class="container">
     {{#each condition_detail}}
@@ -35,4 +58,59 @@
       <p>{{details}}</p>
     {{/each}}
   </div>
+</template>
+
+
+
+<!--template for navbar -
+<template name="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top ">
+      <ul class="navbar-nav vertical-list">
+        <li>
+          <a href="#" class="nav-pad">About Us</a>
+        </li>
+        <li>
+          <a href="#" class="nav-pad">Conditions</a>
+        </li>
+        <li>
+          <a href="#" class="nav-pad">Procedures</a>
+        </li>
+        <li>
+          <a href="#" class="nav-pad">Contact Us</a>
+        </li>
+      </ul>
+  </nav>
+</template>-->
+
+
+
+<template name="about_us_template">
+  {{#each about}}
+    {{content}}
+  {{/each}}
+</template>
+
+
+<template name="contact_us_template">
+  {{#each contact}}
+    {{content}}
+  {{/each}}
+</template>
+
+
+<template name="navbar">
+  <nav id="navbar-example2" class="navbar navbar-light bg-light coloring navbar-fixed-top">
+    <a class="navbar-brand" href="#">SGN</a>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#aboutusscroll" >About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#conditionscroll">Conditions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contactusscroll">Contact Us</a>
+      </li>
+    </ul>
+  </nav>   
 </template>

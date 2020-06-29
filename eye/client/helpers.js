@@ -23,6 +23,9 @@ Template.condition_details_template.helpers({
         console.log(Conditions.findOne({name:Session.get("image number")}));
         return [Conditions.findOne({name:Session.get("image number")})];
     },
+    'condition_detail_image':function(){
+    	return [ConditionImages.findOne({img_alt:Session.get("image number")})];
+    },
 });
 
 Template.about_us_template.helpers({
@@ -39,3 +42,22 @@ Template.contact_us_template.helpers({
     },
 });
    
+Template.scene_template.helpers({
+	'original': function(){
+		if (!Session.get("image number")){
+		    return true;
+		} 
+		else {
+			return false;
+		}
+    },
+    'clicked': function(){
+		if (Session.get("image number")){
+			$(".js-condition-image").fadeOut('3600000');
+		    return true;
+		} 
+		else {
+			return false;
+		}
+    },
+});

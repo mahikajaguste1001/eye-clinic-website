@@ -16,8 +16,7 @@
       </div>>
       <div id="conditionscroll">
       <div class="sectioning">
-        {{> condition_images_template}}
-        {{> condition_details_template}}
+        {{> scene_template}}
       </div>
       </div>
       <div id="contactusscroll">
@@ -30,22 +29,38 @@
 </body>
 
 
+
+<template name="scene_template">
+  {{#if original}}
+    {{> condition_images_template}}
+  {{/if}}
+  {{#if clicked}}
+    {{> condition_details_template}}
+  {{/if}}
+</template>
+
+
 <!--template to display images of all conditions -->
 <template name="condition_images_template">
   <div class="row">
-     
-        {{#each condition_images_array}}
-          <div class="col-xs-12 col-md-3">
-            <div class="thumbnail">
-              <img class="js-condition-image" src="{{img_src}}" alt="{{img_alt}}" /> 
-              <div class="caption">
-                <h3>{{img_alt}}</h3>
-              </div>
+    {{#each condition_images_array}}
+      <div class="col-xs-12 col-md-3">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img class="js-condition-image card-images" src="{{img_src}}" alt="{{img_alt}}" />
             </div>
-          </div> <!-- / col -->
-        {{/each}}
-      
+            <div class="flip-card-back">
+              <h1>{{img_alt}}</h1>
+              <p>Some info about {{img_alt}}</p>
+              <button type="button" class="btn btn-link js-learn-more">Learn more</button>
+            </div>
+          </div>
+        </div>
+      </div> <!-- / col -->
+    {{/each}}  
   </div> <!-- / row -->
+  
 </template>
 
 
@@ -53,10 +68,22 @@
 <!--template to display details of a condition when clicked on it -->
 <template name="condition_details_template">
   <div class="container">
-    {{#each condition_detail}}
-      <h2>{{name}}</h2>
-      <p>{{details}}</p>
-    {{/each}}
+    <div class="row">
+      <div class="col-xs-12 col-md-1">
+        <span class="glyphicon glyphicon-arrow-left js-back-button"></span>
+      </div>
+      {{#each condition_detail_image}}
+        <div class="col-xs-12 col-md-3">
+          <img src="{{img_src}}" alt="{{img_alt}}" class="click-display"/>
+        </div>
+      {{/each}}
+      {{#each condition_detail}}
+        <div class="col-xs-12 col-md-3">
+          <h2>{{name}}</h2>
+          <p>{{details}}</p>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </template>
 
